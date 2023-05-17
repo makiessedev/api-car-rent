@@ -6,4 +6,4 @@ const routes = Router()
 
 routes.post('/', createSpecificationController)
 
-export { routes as SpecificationRoutes }
+export { routes as specificationRoutes }
