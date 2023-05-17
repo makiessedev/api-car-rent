@@ -1,38 +1,40 @@
-import { PrismaClient } from '@prisma/client'
-import fastify from 'fastify'
-import { z } from 'zod'
+import 'reflect-metadata'
+import express, { NextFunction, Request, Response } from 'express'
+import cors from 'cors'
+import { ZodError } from 'zod'
 
-const app = fastify()
+import { AppError } from './error/app-error'
 
-const prisma = new PrismaClient()
+import './shared/container'
+import { routes } from './routes'
 
-app.get('/users', async () => {
-  const users = await prisma.user.findMany()
+const app = express()
 
-  return { users }
-})
+app.use(cors())
 
-app.post('/users', async (request, reply) => {
-  const createUserSchema = z.object({
-    name: z.string(),
-    email: z.string().email(),
-  })
+app.use(express.json())
 
-  const { name, email } = createUserSchema.parse(request.body)
+app.use(routes)
 
-  await prisma.user.create({
-    data: {
-      name,
-      email,
+app.use(
+  (err: Error, request: Request, response: Response, next: NextFunction) => {
+    if (err instanceof AppError) {
+      return response.status(err.statusCode).json({
+        message: err.message,
+      })
     }
-  })
 
-  return reply.status(201).send()
-})
+    if (err instanceof ZodError) {
+      return response.status(400).send({ message: err.issues[0].message })
+    }
 
-app.listen({
-  host: '0.0.0.0',
-  port: process.env.PORT ? Number(process.env.PORT) : 3333,
-}).then(() => {
-  console.log('HTTP Server Running')
+    return response.status(500).json({
+      status: 'Error',
+      message: `Internal server error - ${err.message}`,
+    })
+  }
+)
+
+app.listen(3333, () => {
+  console.log('Server running!')
 })
