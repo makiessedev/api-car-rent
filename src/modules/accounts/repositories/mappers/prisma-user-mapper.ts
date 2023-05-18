@@ -7,6 +7,7 @@ class PrismaUserMapper {
     name,
     email,
     password,
+    avatar,
     driverLicense,
     isAdmin,
     createdAt,
@@ -16,6 +17,7 @@ class PrismaUserMapper {
       name,
       email,
       password,
+      avatar,
       driverLicense,
       isAdmin,
       createdAt,
@@ -27,11 +29,12 @@ class PrismaUserMapper {
     name,
     email,
     password,
+    avatar,
     isAdmin,
     driverLicense,
     createdAt,
   }: User) {
-    return { id, name, email, password, isAdmin, driverLicense, createdAt }
+    return { id, name, email, password, avatar, isAdmin, driverLicense, createdAt }
   }
 }
 

@@ -5,6 +5,7 @@ interface IUserProps {
   id: string
   name: string
   email: string
+  avatar: string
   password: string
   isAdmin?: boolean
   driverLicense: string
@@ -48,6 +49,14 @@ class User {
 
   set password(value: string) {
     this.props.password = value
+  }
+
+  get avatar(): string {
+    return this.props.avatar
+  }
+
+  set avatar(value: string) {
+    this.props.avatar = value
   }
 
   get isAdmin(): boolean {

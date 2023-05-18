@@ -32,6 +32,7 @@ model User {
   id            String   @id @default(uuid())
   name          String
   email         String   @unique
+  avatar        String?
   password      String
   driverLicense String
   isAdmin       Boolean  @default(false)
