@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
-import { AppError } from '../error/app-error'
+import { AppError } from '../../../error/app-error'
 import { verify } from 'jsonwebtoken'
-import { PrismaUsersRepository } from '../modules/accounts/repositories/prisma/prisma-users-repository'
+import { PrismaUsersRepository } from '../../../../modules/accounts/infra/repositories/prisma-users-repository'
 
 interface IPayload {
   sub: string

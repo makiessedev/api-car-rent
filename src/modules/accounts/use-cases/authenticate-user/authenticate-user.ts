@@ -2,7 +2,7 @@ import { inject, injectAll, injectable } from 'tsyringe'
 import { compare } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
 import { IUsersRepository } from '../../repositories/users-repository'
-import { AppError } from '../../../../error/app-error'
+import { AppError } from '../../../../shared/error/app-error'
 
 interface IRequest {
   email: string
@@ -28,7 +28,7 @@ class AuthenticateUser {
 
     const passwordMatch = await compare(password, user.password)
 
-    if (!passwordMatch) throw new AppError('Email  or password invalid!')
+    if (!passwordMatch) throw new AppError('Email or password invalid!')
 
     const token = sign({}, process.env.TOKEN_SECRETE_KEY, {
       subject: user.id,

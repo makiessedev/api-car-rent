@@ -3,10 +3,9 @@ import express, { NextFunction, Request, Response } from 'express'
 import cors from 'cors'
 import { ZodError } from 'zod'
 
-import { AppError } from './error/app-error'
-
-import './shared/container'
 import { routes } from './routes'
+import { AppError } from '../../error/app-error'
+import '../../container'
 
 const app = express()
 

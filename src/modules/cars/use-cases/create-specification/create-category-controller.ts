@@ -1,9 +1,9 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe'
 import { z } from 'zod'
+import { CreateSpecification } from './create-specification'
 
 import 'express-async-errors'
-import { CreateSpecification } from './create-specification'
 
 const specificationScheme = z.object({
   name: z.string({

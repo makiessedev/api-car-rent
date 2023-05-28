@@ -1,5 +1,5 @@
 import { User as rawUser } from '@prisma/client'
-import { User } from '../../model/user'
+import { User } from '../../../model/user'
 
 class PrismaUserMapper {
   static toDomain({

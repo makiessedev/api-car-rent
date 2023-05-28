@@ -2,9 +2,9 @@ import { Router } from 'express'
 import multer from 'multer'
 import 'reflect-metadata'
 
-import { createCategoryController } from '../modules/cars/use-cases/create-category/create-category-controller'
-import { listCategoryController } from '../modules/cars/use-cases/list-category/list-category-controller'
-import { importCategoryController } from '../modules/cars/use-cases/import-category/import-category-controller'
+import { createCategoryController } from '../../../../modules/cars/use-cases/create-category/create-category-controller'
+import { listCategoryController } from '../../../../modules/cars/use-cases/list-category/list-category-controller'
+import { importCategoryController } from '../../../../modules/cars/use-cases/import-category/import-category-controller'
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated'
 
 const routes = Router()

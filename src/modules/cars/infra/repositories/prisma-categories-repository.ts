@@ -1,11 +1,11 @@
 import { PrismaClient } from '@prisma/client'
-import { Category } from '../../../model/Category'
+import { prisma as prismaService } from '../../../../shared/lib/prisma.service'
 import {
   ICategoriesRepository,
   ICreateCategoryDTO,
-} from '../../interfaces/categories-repository'
-import { PrismaCategoryMapper } from '../mappers/prisma-category-mapper'
-import { prisma as prismaService } from '../../../../../shared/prisma/prisma.service'
+} from '../../repositories/interfaces/categories-repository'
+import { Category } from '../../model/Category'
+import { PrismaCategoryMapper } from './mappers/prisma-category-mapper'
 
 class PrismaCategoriesRepository implements ICategoriesRepository {
   private prisma: PrismaClient
@@ -16,7 +16,7 @@ class PrismaCategoriesRepository implements ICategoriesRepository {
   async create({ name, description }: ICreateCategoryDTO): Promise<void> {
     const category = new Category({ name, description })
 
-    const rawCategory = await PrismaCategoryMapper.toPrisma(category)
+    const rawCategory = PrismaCategoryMapper.toPrisma(category)
 
     await this.prisma.category.create({ data: rawCategory })
   }

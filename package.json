@@ -6,7 +6,7 @@
   "scripts": {
     "test": "vitest",
     "start": "node dist/server.js",
-    "start:dev": "tsx watch src/server.ts",
+    "start:dev": "tsx watch src/shared/infra/http/server.ts",
     "build": "tsup src",
     "coverage": "vitest run --coverage"
   },

@@ -5,7 +5,7 @@ interface IUserProps {
   id: string
   name: string
   email: string
-  avatar: string
+  avatar?: string
   password: string
   isAdmin?: boolean
   driverLicense: string

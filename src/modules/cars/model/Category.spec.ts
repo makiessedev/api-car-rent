@@ -8,6 +8,6 @@ describe('Create Category', () => {
     console.log(category)
 
     expect(category).toHaveProperty('id')
-    expect(category).toHaveProperty('created_at')
+    expect(category).toHaveProperty('createdAt')
   })
 })

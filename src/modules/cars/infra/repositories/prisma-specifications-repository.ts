@@ -1,11 +1,11 @@
-import { prisma as prismaService } from '../../../../../shared/prisma/prisma.service'
+import { PrismaClient } from '@prisma/client'
+import { prisma as prismaService } from '../../../../shared/lib/prisma.service'
 import {
   ICreateSpecificationDTO,
   ISpecificationsRepository,
-} from '../../interfaces/specification-repository'
-import { Specification } from '../../../model/Specification'
-import { PrismaSpecificationMapper } from '../mappers/prisma-specification-mapper'
-import { PrismaClient } from '@prisma/client'
+} from '../../repositories/interfaces/specification-repository'
+import { Specification } from '../../model/Specification'
+import { PrismaSpecificationMapper } from './mappers/prisma-specification-mapper'
 
 class PrismaSpecificationsRepository implements ISpecificationsRepository {
   private prisma: PrismaClient

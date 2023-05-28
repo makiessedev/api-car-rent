@@ -1,9 +1,9 @@
 import { PrismaClient } from '@prisma/client'
-import { prisma as prismaService } from '../../../../shared/prisma/prisma.service'
+import { prisma as prismaService } from '../../../../shared/lib/prisma.service'
 import { ICreateUserDTO } from '../../dtos/create-user-dto'
 import { User } from '../../model/user'
-import { IUsersRepository } from '../users-repository'
-import { PrismaUserMapper } from '../mappers/prisma-user-mapper'
+import { IUsersRepository } from '../../repositories/users-repository'
+import { PrismaUserMapper } from './mappers/prisma-user-mapper'
 
 class PrismaUsersRepository implements IUsersRepository {
   private prisma: PrismaClient

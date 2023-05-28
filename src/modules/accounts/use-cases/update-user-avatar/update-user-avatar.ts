@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe'
 import { IUsersRepository } from '../../repositories/users-repository'
-import { AppError } from '../../../../error/app-error'
+import { AppError } from '../../../../shared/error/app-error'
 import { deleteFile } from '../../../../utils/file'
 
 interface IRequest {
