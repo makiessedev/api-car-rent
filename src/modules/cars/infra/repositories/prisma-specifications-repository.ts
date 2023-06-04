@@ -13,12 +13,26 @@ class PrismaSpecificationsRepository implements ISpecificationsRepository {
   constructor() {
     this.prisma = prismaService
   }
-  async create({ name, description }: ICreateSpecificationDTO): Promise<void> {
+
+  async create({
+    name,
+    description,
+  }: ICreateSpecificationDTO): Promise<Specification> {
     const specification = new Specification({ name, description })
 
-    const rawSpecification = PrismaSpecificationMapper.toPrisma(specification)
+    const rawSpecification = await this.prisma.specification.create({
+      data: PrismaSpecificationMapper.toPrisma(specification),
+    })
 
-    await this.prisma.specification.create({ data: rawSpecification })
+    return PrismaSpecificationMapper.toDomain(rawSpecification)
+  }
+
+  async findByIds(ids: string[]): Promise<Specification[]> {
+    const specifications = await this.prisma.specification.findMany({
+      where: { id: { in: ids } },
+    })
+
+    return specifications.map(PrismaSpecificationMapper.toDomain)
   }
 }
 

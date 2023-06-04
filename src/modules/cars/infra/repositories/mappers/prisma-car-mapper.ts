@@ -1,4 +1,4 @@
-import { car as carRaw } from '@prisma/client'
+import { Car as carRaw } from '@prisma/client'
 import { Car } from '../../../model/Car'
 
 class PrismaCarMapper {
@@ -51,6 +51,7 @@ class PrismaCarMapper {
       id,
       license_plate,
       name,
+      
     })
   }
 }

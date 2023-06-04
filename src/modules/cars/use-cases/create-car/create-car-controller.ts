@@ -3,8 +3,6 @@ import { container } from 'tsyringe'
 import { z } from 'zod'
 import { CreateCar } from './create-car'
 
-import 'express-async-errors'
-
 class CreateCarController {
   async handle(request: Request, response: Response): Promise<Response> {
     const carScheme = z.object({

@@ -25,6 +25,7 @@ model Specification {
   name        String
   description String
   createdAt   DateTime @default(now())
+  cars        Car[]
 
   @@map("specifications")
 }
@@ -43,17 +44,29 @@ model User {
 }
 
 model Car {
-  id            String   @id @default(uuid())
-  name          String
-  description   String
-  daily_rate    Float
-  available     Boolean  @default(true)
-  license_plate String
-  fine_amount   Float
-  brand         String
-  created_at    DateTime @default(now())
-  category      Category @relation(fields: [categoryId], references: [id])
-  categoryId    String
+  id             String          @id @default(uuid())
+  name           String
+  description    String
+  daily_rate     Float
+  available      Boolean         @default(true)
+  license_plate  String          @unique
+  fine_amount    Float
+  brand          String
+  created_at     DateTime        @default(now())
+  category       Category        @relation(fields: [categoryId], references: [id])
+  categoryId     String
+  images         CarImage[]
+  specifications Specification[]
 
   @@map("cars")
+}
+
+model CarImage {
+  id          String   @id @default(uuid())
+  images_name String
+  created_at  DateTime @default(now())
+  Car         Car      @relation(fields: [car_id], references: [id])
+  car_id      String
+
+  @@map("car_images")
 }

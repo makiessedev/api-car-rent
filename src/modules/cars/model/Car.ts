@@ -1,4 +1,5 @@
 import { randomUUID } from 'crypto'
+import { Specification } from './Specification'
 
 interface ICarProps {
   id?: string
@@ -11,6 +12,7 @@ interface ICarProps {
   brand: string
   created_at?: Date
   categoryId: string
+  specifications?: Specification[]
 }
 
 class Car {
@@ -80,6 +82,14 @@ class Car {
 
   set brand(value: string) {
     this.props.brand = value
+  }
+
+  get specifications(): Specification[] {
+    return this.props.specifications
+  }
+
+  set specifications(specifications: Specification[]) {
+    this.props.specifications = specifications
   }
 
   get created_at(): Date {

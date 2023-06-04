@@ -22,9 +22,9 @@ class CreateSpecificationController {
 
     const createSpecification = container.resolve(CreateSpecification)
 
-    await createSpecification.execute({ name, description })
+    const specification = await createSpecification.execute({ name, description })
 
-    return response.status(201).send()
+    return response.status(201).send(specification)
   }
 }
 

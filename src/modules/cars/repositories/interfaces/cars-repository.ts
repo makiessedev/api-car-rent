@@ -1,8 +1,16 @@
-import { ICreateCarDTO } from '../../dtos/create-car-dto'
+import { ISaveCarDTO } from '../../dtos/save-car-dto'
 import { Car } from '../../model/Car'
 
 interface ICarsRepository {
-  create(datas: ICreateCarDTO): Promise<Car>
+  create(datas: ISaveCarDTO): Promise<Car>
+  update(datas: ISaveCarDTO): Promise<Car>
+  findByLacensePlate(license_plate: string): Promise<Car | null>
+  findById(id: string): Promise<Car>
+  findByAvailable(
+    category_id?: string,
+    brand?: string,
+    name?: string
+  ): Promise<Car[] | null>
 }
 
 export { ICarsRepository }

@@ -8,7 +8,8 @@
     "start": "node dist/server.js",
     "start:dev": "tsx watch src/shared/infra/http/server.ts",
     "build": "tsup src",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "seed:admin": "tsx prisma/seed/admin.ts"
   },
   "keywords": [],
   "author": "",
