@@ -62,10 +62,10 @@ model Car {
 }
 
 model CarImage {
-  id          String   @id @default(uuid())
+  id          String    @id @default(uuid())
   images_name String
-  created_at  DateTime @default(now())
-  Car         Car      @relation(fields: [car_id], references: [id])
+  created_at  DateTime? @default(now())
+  Car         Car       @relation(fields: [car_id], references: [id])
   car_id      String
 
   @@map("car_images")

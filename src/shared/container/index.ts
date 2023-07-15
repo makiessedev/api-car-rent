@@ -7,6 +7,8 @@ import { PrismaSpecificationsRepository } from '../../modules/cars/infra/reposit
 import { PrismaUsersRepository } from '../../modules/accounts/infra/repositories/prisma-users-repository'
 import { ICarsRepository } from '../../modules/cars/repositories/interfaces/cars-repository'
 import { PrismaCarsRepository } from '../../modules/cars/infra/repositories/prisma-cars-repository'
+import { ICarsImagesRepository } from '../../modules/cars/repositories/interfaces/cars-images-repository'
+import { PrismaCarsImagesRepository } from '../../modules/cars/infra/repositories/prisma-cars-images-repository'
 
 container.registerSingleton<ICategoriesRepository>(
   'CategoriesRepository',
@@ -26,4 +28,9 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<ICarsRepository>(
   'CarsRepository',
   PrismaCarsRepository
+)
+
+container.registerSingleton<ICarsImagesRepository>(
+  'CarsImageRepository',
+  PrismaCarsImagesRepository
 )

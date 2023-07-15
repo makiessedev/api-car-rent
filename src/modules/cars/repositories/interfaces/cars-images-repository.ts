@@ -1,5 +1,8 @@
+import { CarImage } from '../../model/car-image'
+
 interface ICarsImagesRepository {
-  create(car_id: string, images_name: string[]): Promise<void>
+  update(car_id: string, images_name: string[]): Promise<void>
+  findByCarId(id: string): Promise<CarImage | null>
 }
 
 export { ICarsImagesRepository }

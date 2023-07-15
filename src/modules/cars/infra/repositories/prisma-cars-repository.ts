@@ -42,11 +42,14 @@ class PrismaCarsRepository implements ICarsRepository {
     return PrismaCarMapper.toDomain(car)
   }
 
-  async findById(id: string): Promise<Car> {
-    return PrismaCarMapper.toDomain(
-      await prisma.car.findUnique({ where: { id } })
-    )
+  async findById(id: string): Promise<Car | null> {
+    const car = await prisma.car.findUnique({ where: { id: id } })
+
+    if (!car) return null
+
+    return PrismaCarMapper.toDomain(car)
   }
+
   async create({
     name,
     brand,

@@ -1,17 +1,19 @@
 import { randomUUID } from 'crypto'
+import { Replace } from '../../../helpers/replace'
 
 interface CarImageProps {
   id?: string
   car_id: string
   images_name: string[]
-  created_at?: Date
+  created_at: Date
 }
 
 class CarImage {
-  constructor(private props: CarImageProps) {
-    if (!this.props.id) {
-      this.props.id = randomUUID()
-      this.props.created_at = new Date()
+  constructor(private props: Replace<CarImageProps, { created_at?: Date }>) {
+    this.props = {
+      ...this.props,
+      id: this.props.id ?? randomUUID(),
+      created_at: this.props.created_at ?? new Date(),
     }
   }
 
